@@ -19,28 +19,18 @@
 #
 #################################################################################
 
-{
-    "name": 'Multicompany Survey',
-    "version": '1.0',
-    "description": """ 
-This module give the possibility to choose a company for the survey
-""",
-    "author": 'Julius Network Solutions',
-    'images': [],
-    "website": 'http://www.julius.fr/',
-    "depends": [
-        'base',
-        'survey',
-    ],
-    "demo": [],
-    "data": [
-        "data/survey_security.xml",
-        "survey_view.xml",
-    ],
-    "installable": True,
-    "active": False,
-    "category" : "Base extra Modules",
-    "test": [],
-}
+from lxml import etree
+from odoo.osv import fields, orm
+from odoo.tools.translate import _
 
+class survey(orm.Model):
+    _inherit = 'survey'
+    
+    _columns = {
+        'company_id': fields.many2one('res.company', 'Company', required=False),
+    }
+    _defaults = {
+        'company_id': lambda s, cr, uid, c: s.pool.get('res.company')._company_default_get(cr, uid, 'survey', context=c),
+    }
+    
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

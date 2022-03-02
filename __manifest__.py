@@ -19,18 +19,28 @@
 #
 #################################################################################
 
-from lxml import etree
-from openerp.osv import fields, orm
-from openerp.tools.translate import _
+{
+    "name": 'Multicompany Survey',
+    "version": '1.0',
+    "description": """ 
+This module give the possibility to choose a company for the survey
+""",
+    "author": 'Julius Network Solutions',
+    'images': [],
+    "website": 'http://www.julius.fr/',
+    "depends": [
+        'base',
+        'survey',
+    ],
+    "demo": [],
+    "data": [
+        "security/survey_security.xml",
+        "views/survey_view.xml",
+    ],
+    "installable": True,
+    "active": False,
+    "category" : "Base extra Modules",
+    "test": [],
+}
 
-class survey(orm.Model):
-    _inherit = 'survey'
-    
-    _columns = {
-        'company_id': fields.many2one('res.company', 'Company', required=False),
-    }
-    _defaults = {
-        'company_id': lambda s, cr, uid, c: s.pool.get('res.company')._company_default_get(cr, uid, 'survey', context=c),
-    }
-    
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
 
        	<record model="ir.ui.view" id="multicompany_survey_view">
@@ -14,5 +14,5 @@
         </record>
 
     </data>
-</openerp>
+</odoo>
         
